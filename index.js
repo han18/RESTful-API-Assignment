@@ -1,6 +1,5 @@
 console.log("Expanding a RESTful API Assignment");
 const express = require("express");
-const bodyParser = require("body-parser");
 
 const users = require("./routes/users");
 const posts = require("./routes/posts");
@@ -38,7 +37,7 @@ apiKeys = ["perscholas", "ps-example", "hJAsknw-L198sAJD-l3kasx"];
 // This is why we attached the /api/ prefix
 // to our routing at the beginning!
 app.use("/api", function (req, res, next) {
-  var key = req.query["api-key"];
+  var key = req.query["myKey"]; // accessing the URL with the query
 
   // Check for the absence of a key.
   if (!key) next(error(400, "API Key Required"));
@@ -55,7 +54,7 @@ app.use("/api", function (req, res, next) {
 app.use("/api/users", users);
 app.use("/api/posts", posts);
 
-//main/root index URL route
+//main/root in the index URL route file here
 app.get("/", (req, res) => {
   res.send("This is the main route");
 });
